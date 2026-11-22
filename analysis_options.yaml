@@ -1,0 +1,11 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    # The Dart katas of hands-on 1.1 are standalone files, and the starters
+    # are incomplete on purpose.
+    - katas/**
