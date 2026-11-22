@@ -9,7 +9,7 @@ If you get stuck, check out the next branch and continue from there.
 | --- | --- |
 | `01-start` | Hands-on 1.2: Spot card and list |
 | `02-list` | Hands-on 1.3: Favourites and detail page |
-| `03-navigation` | Hands-on 1.4: Favourites with a Cubit |
+| `03-navigation` | Hands-on 1.4: Move favourites into a Cubit |
 
 The Dart katas of hands-on 1.1 are in `katas/`.
 
@@ -20,7 +20,7 @@ flutter pub get
 flutter run -d chrome
 ```
 
-## Hands-on 1.4: Favourites with a Cubit
+## Hands-on 1.4: Move favourites into a Cubit
 
 Start on branch `03-navigation`.
 
@@ -39,4 +39,8 @@ a new set.
 
 **Bonus:** Show a favourites counter in the AppBar with `BlocSelector`.
 
-Stuck? The sample solution is on the next branch.
+Stuck? The sample solution is on the next branch:
+
+```
+git checkout 04-cubit
+```
