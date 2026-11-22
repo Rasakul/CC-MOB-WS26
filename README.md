@@ -8,7 +8,8 @@ If you get stuck, check out the next branch and continue from there.
 | Branch | Start of |
 | --- | --- |
 | `01-start` | Hands-on 1.2: Spot card and list |
-| `02-list` | Hands-on 1.3 |
+| `02-list` | Hands-on 1.3: Favourites and detail page |
+| `03-navigation` | Hands-on 1.4 |
 
 The Dart katas of hands-on 1.1 are in `katas/`.
 
@@ -19,27 +20,25 @@ flutter pub get
 flutter run -d chrome
 ```
 
-## Hands-on 1.2: Spot card and list
+## Hands-on 1.3: Favourites and detail page
 
-Start on branch `01-start`. The model is in `lib/spot.dart`, the data in
-`lib/mock_spots.dart`.
+Start on branch `02-list`.
 
-1. Build `SpotCard` as its own widget: image placeholder on the left, name
-   and category next to it, a heart icon on the right.
-2. Build `SpotListPage` with `ListView.builder` that shows every mock spot
-   as a SpotCard.
+1. `SpotListPage` keeps a set of favourite IDs as state. `SpotCard` gets
+   `isFavorite` and an `onToggle` callback.
+2. A tap on the card opens `SpotDetailPage` with the selected spot.
+3. The detail page also shows a heart that toggles the favourite.
 
-**Done when:** The list scrolls and no yellow-black overflow stripe shows,
-even in a narrow window.
+**Done when:** The heart toggles in the list and the detail page shows the
+right spot.
 
-**Watch out:** Long names break the Row. Wrap the text column in `Expanded`.
+**Watch out:** Step 3 is meant to hurt: the state lives in the list, the
+detail page cannot reach it easily.
 
-**Bonus:** Use const constructors and take colours from the Theme.
-
-The heart does nothing yet. That is part of hands-on 1.3.
+**Bonus:** Lift the state up far enough that both pages share it.
 
 Stuck? The sample solution is on the next branch:
 
 ```
-git checkout 02-list
+git checkout 03-navigation
 ```
