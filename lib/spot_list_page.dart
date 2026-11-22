@@ -1,58 +1,54 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_ui/material_ui.dart';
 
+import 'favorites_cubit.dart';
 import 'mock_spots.dart';
-import 'spot.dart';
 import 'spot_card.dart';
 import 'spot_detail_page.dart';
 
-class SpotListPage extends StatefulWidget {
+class SpotListPage extends StatelessWidget {
   const SpotListPage({super.key});
-
-  @override
-  State<SpotListPage> createState() => _SpotListPageState();
-}
-
-class _SpotListPageState extends State<SpotListPage> {
-  final Set<String> _favoriteIds = {};
-
-  void _toggleFavorite(String id) {
-    setState(() {
-      if (_favoriteIds.contains(id)) {
-        _favoriteIds.remove(id);
-      } else {
-        _favoriteIds.add(id);
-      }
-    });
-  }
-
-  void _openDetail(Spot spot) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return SpotDetailPage(
-            spot: spot,
-            isFavorite: _favoriteIds.contains(spot.id),
-            onToggle: () => _toggleFavorite(spot.id),
-          );
-        },
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Spots')),
-      body: ListView.builder(
-        itemCount: mockSpots.length,
-        itemBuilder: (context, index) {
-          final spot = mockSpots[index];
-          return SpotCard(
-            spot: spot,
-            isFavorite: _favoriteIds.contains(spot.id),
-            onToggle: () => _toggleFavorite(spot.id),
-            onTap: () => _openDetail(spot),
+      appBar: AppBar(
+        title: const Text('Spots'),
+        actions: [
+          // Only rebuilds when the number of favourites changes.
+          BlocSelector<FavoritesCubit, Set<String>, int>(
+            selector: (favoriteIds) => favoriteIds.length,
+            builder: (context, count) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: Center(child: Text('Favourites: $count')),
+              );
+            },
+          ),
+        ],
+      ),
+      body: BlocBuilder<FavoritesCubit, Set<String>>(
+        builder: (context, favoriteIds) {
+          return ListView.builder(
+            itemCount: mockSpots.length,
+            itemBuilder: (context, index) {
+              final spot = mockSpots[index];
+              return SpotCard(
+                spot: spot,
+                isFavorite: favoriteIds.contains(spot.id),
+                onToggle: () {
+                  context.read<FavoritesCubit>().toggle(spot.id);
+                },
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SpotDetailPage(spot: spot),
+                    ),
+                  );
+                },
+              );
+            },
           );
         },
       ),

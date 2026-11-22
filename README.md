@@ -10,6 +10,7 @@ If you get stuck, check out the next branch and continue from there.
 | `01-start` | Hands-on 1.2: Spot card and list |
 | `02-list` | Hands-on 1.3: Favourites and detail page |
 | `03-navigation` | Hands-on 1.4: Move favourites into a Cubit |
+| `04-cubit` | Interim task: search as its own Cubit |
 
 The Dart katas of hands-on 1.1 are in `katas/`.
 
@@ -20,27 +21,22 @@ flutter pub get
 flutter run -d chrome
 ```
 
-## Hands-on 1.4: Move favourites into a Cubit
+## Interim task: search as its own Cubit
 
-Start on branch `03-navigation`.
+Start on branch `04-cubit`.
 
-1. Add `flutter_bloc` as a dependency.
-2. Write `FavoritesCubit`: its state is the set of favourite IDs, with a
-   method `toggle(String id)`.
-3. Provide it with `BlocProvider` above MaterialApp.
-4. List and detail page read the state with `BlocBuilder` and call `toggle`.
-5. Remove the old state and all callbacks from 1.3.
+A search field above the list filters the spots by name. The search term
+lives in its own `SpotFilterCubit`, not in the widget.
 
-**Done when:** A favourite set on the detail page shows in the list after
-going back. No setState left.
+**Done when:** The list filters while you type and favourites still work.
 
-**Watch out:** Changing the old set and emitting it again does nothing. Emit
-a new set.
+**Bonus:** Also filter by category. The state then becomes its own class
+with `copyWith`.
 
-**Bonus:** Show a favourites counter in the AppBar with `BlocSelector`.
+**Hand in:** Link to your branch by the day before Unit 2. Not graded.
 
 Stuck? The sample solution is on the next branch:
 
 ```
-git checkout 04-cubit
+git checkout 05-filter
 ```

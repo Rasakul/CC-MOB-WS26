@@ -1,39 +1,17 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_ui/material_ui.dart';
 
+import 'favorites_cubit.dart';
 import 'spot.dart';
 
-class SpotDetailPage extends StatefulWidget {
-  const SpotDetailPage({
-    super.key,
-    required this.spot,
-    required this.isFavorite,
-    required this.onToggle,
-  });
+class SpotDetailPage extends StatelessWidget {
+  const SpotDetailPage({super.key, required this.spot});
 
   final Spot spot;
-  final bool isFavorite;
-  final VoidCallback onToggle;
-
-  @override
-  State<SpotDetailPage> createState() => _SpotDetailPageState();
-}
-
-class _SpotDetailPageState extends State<SpotDetailPage> {
-  // The favourites live in SpotListPage, and this page is not rebuilt when
-  // they change. So it keeps its own copy: the same state now exists twice.
-  late bool _isFavorite = widget.isFavorite;
-
-  void _toggle() {
-    setState(() {
-      _isFavorite = !_isFavorite;
-    });
-    widget.onToggle();
-  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final spot = widget.spot;
 
     return Scaffold(
       appBar: AppBar(title: Text(spot.name)),
@@ -70,12 +48,19 @@ class _SpotDetailPageState extends State<SpotDetailPage> {
                   ],
                 ),
               ),
-              IconButton(
-                onPressed: _toggle,
-                color: theme.colorScheme.primary,
-                icon: Icon(
-                  _isFavorite ? Icons.favorite : Icons.favorite_border,
-                ),
+              BlocBuilder<FavoritesCubit, Set<String>>(
+                builder: (context, favoriteIds) {
+                  final isFavorite = favoriteIds.contains(spot.id);
+                  return IconButton(
+                    onPressed: () {
+                      context.read<FavoritesCubit>().toggle(spot.id);
+                    },
+                    color: theme.colorScheme.primary,
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                    ),
+                  );
+                },
               ),
             ],
           ),
