@@ -1,5 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 
+import 'spot_list_page.dart';
+
 void main() {
   runApp(const SpotsApp());
 }
@@ -14,22 +16,7 @@ class SpotsApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      // TODO: Hands-on 1.2: show your SpotListPage here instead.
-      home: const PlaceholderPage(),
-    );
-  }
-}
-
-class PlaceholderPage extends StatelessWidget {
-  const PlaceholderPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Spots')),
-      // TODO: Hands-on 1.2: build SpotCard and SpotListPage, see README.md.
-      //       The data is ready in mock_spots.dart.
-      body: const Center(child: Text('Hands-on 1.2 starts here.')),
+      home: const SpotListPage(),
     );
   }
 }
