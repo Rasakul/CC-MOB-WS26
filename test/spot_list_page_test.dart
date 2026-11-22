@@ -16,4 +16,17 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(find.text(mockSpots.first.name), findsOneWidget);
   });
+
+  testWidgets('a tap on the heart toggles the favourite', (tester) async {
+    await tester.pumpWidget(const MaterialApp(home: SpotListPage()));
+    expect(find.byIcon(Icons.favorite), findsNothing);
+
+    await tester.tap(find.byIcon(Icons.favorite_border).first);
+    await tester.pump();
+    expect(find.byIcon(Icons.favorite), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.favorite));
+    await tester.pump();
+    expect(find.byIcon(Icons.favorite), findsNothing);
+  });
 }
