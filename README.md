@@ -33,7 +33,7 @@ lives in its own `SpotFilterCubit`, not in the widget.
 **Bonus:** Also filter by category. The state then becomes its own class
 with `copyWith`.
 
-**Hand in:** Link to your branch by the day before Unit 2. Not graded.
+**Hint:** To read two Cubits in one place, nest two BlocBuilder widgets.
 
 Stuck? The sample solution is on the next branch:
 
