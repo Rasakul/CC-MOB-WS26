@@ -35,8 +35,5 @@ with `copyWith`.
 
 **Hint:** To read two Cubits in one place, nest two BlocBuilder widgets.
 
-Stuck? The sample solution is on the next branch:
-
-```
-git checkout 05-filter
-```
+The sample solution is on branch `05-filter`. It is published shortly before
+Unit 2.
