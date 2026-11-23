@@ -29,13 +29,13 @@ Start on branch `03-navigation`.
    method `toggle(String id)`.
 3. Provide it with `BlocProvider` above MaterialApp.
 4. List and detail page read the state with `BlocBuilder` and call `toggle`.
-5. Remove the old state and all callbacks from 1.3.
+5. Remove the old state and the callbacks passed to the detail page.
 
 **Done when:** A favourite set on the detail page shows in the list after
 going back. No setState left.
 
-**Watch out:** Changing the old set and emitting it again does nothing. Emit
-a new set.
+**Watch out:** Changing the old set and emitting it again works for one tap,
+then nothing happens. Emit a new set.
 
 **Bonus:** Show a favourites counter in the AppBar with `BlocSelector`.
 
