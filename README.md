@@ -8,7 +8,7 @@ If you get stuck, check out the next branch and continue from there.
 | Branch | Start of |
 | --- | --- |
 | `01-start` | Hands-on 1.2: Spot card and list |
-| `02-list` | Hands-on 1.3 |
+| `02-list` | Hands-on 1.3: Favourites and detail page |
 
 The Dart katas of hands-on 1.1 are in `katas/`.
 
